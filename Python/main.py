@@ -27,12 +27,17 @@ def calculate_score(_a, _b):
     b.remove('V') if 'V' in b else b.remove('H')
     return min(len(a&b), len(a-b), len(b-a))
 
+def not_together(a, b):
+    return (('V' in a) and ('H' in b) or ('H' in a) and ('V' in b) or ('H' in a) and ('H' in b))
+
 def merge_slide(slides):
     while (len(slides) > 1):
         slide = slides[0]
         slides.remove(slide)
         best = []
         for j,s in enumerate(slides):
+            if (not_together(slide, s)):
+                continue
             poss = []
             fb = calculate_score(slide[0], s[-1])
             poss.append(fb)
