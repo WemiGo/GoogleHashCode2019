@@ -144,7 +144,7 @@ def read_parse(fp):
     with open(fp) as f:
         content = f.readlines()
         content.remove(content[-1])
-
+    res += str(len(content)) + '\n'
     for l in content:
         l = l.split(' ')
         
